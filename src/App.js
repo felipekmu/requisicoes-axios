@@ -42,7 +42,7 @@ React.useEffect( ()=>{
       <h1> Felipe PokéDex </h1>
       <p> Conheça os Pokémons mais famosos </p>
 
-      <input onChange={ (e)=> alteraTxtPokemon( e.target.value ) } placeholder='Digite o nome de um Pokémon'/>
+      <input onChange={ (e)=> alteraTxtPokemon( e.target.value ) } placeholder="Digite o nome de um Pokémon"/>
       <button onClick={ ()=> buscaPokemon() }>Buscar</button>
       
       {
