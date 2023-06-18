@@ -8,25 +8,26 @@ function App() {
 
 function buscaPokemon(){
   axios.get("https://pokeapi.co/api/v2/pokemon/"+txtPokemon)
-    .then( Response => {
+    .then( response => {
       console.log("Requisição bem sucedida!");
-      alteraPokemons  (Response.data.results);
+      alteraPokemons (response.data.results);
     })
-    .catch( Response => {
+    .catch( response => {
       console.log("Deu ruim na requisição");
-      console.log(Response);
+      console.log(response);
     })
 }
 
   function buscaTodosPokemons(){
     axios.get("https://pokeapi.co/api/v2/pokemon?limit=50")
-    .then( Response => {
+    .then( response => {
       console.log("Requisição bem sucedida!");
-      alteraPokemons  (Response.data.results);
+      alteraPokemons  (response.data.results);
+      console.log(response.data.results)
     })
-    .catch( Response => {
+    .catch( response => {
       console.log("Deu ruim na requisição");
-      console.log(Response);
+      console.log(response);
     })
   }
  // if ( pokemons.length == 0 ){
