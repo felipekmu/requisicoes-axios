@@ -7,12 +7,18 @@ function App() {
   const [ txtPokemon, alteraTxtPokemon ] = React.useState("");
 
 function buscaPokemon(){
+  if( txtPokemon == "" ){
+    buscaTodosPokemons();
+    return;
+  }
+
   axios.get("https://pokeapi.co/api/v2/pokemon/"+txtPokemon)
     .then( response => {
       console.log("Requisição bem sucedida!");
-      alteraPokemons (response.data.results);
+      alteraPokemons ( [response.data] );
     })
     .catch( response => {
+      alert ("Esse Pokémon não existe");
       console.log("Deu ruim na requisição");
       console.log(response);
     })
@@ -44,13 +50,13 @@ React.useEffect( ()=>{
       <p> Conheça os Pokémons mais famosos </p>
 
       <input onChange={ (e)=> alteraTxtPokemon( e.target.value ) } placeholder="Digite o nome de um Pokémon"/>
-      <button onClick={ ()=> buscaPokemon() }>Buscar</button>
+      <button onClick={ ()=> buscaPokemon() } >Buscar</button>
       
       {
         pokemons.map( (pokemon,index) =>
           <div>
             <p> {pokemon.name} </p>
-            <img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/"+(index+1)+".gif"}/>
+            <img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/"+( pokemon.id ? pokemon.id : index+1)+".gif"}/>
             </div>
           )
       }
